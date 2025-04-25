@@ -1,0 +1,74 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "darkGray",
+          "style": "plain",
+          "template": "└────────────────────────────────────────────────────────────────────────────────────────────\n┌────────────────────────────────────────────────────────────────────────────────────────────\n",
+          "type": "text"
+        },
+        {
+          "foreground": "lightMagenta",
+          "properties": {
+            "style": "agnoster_full"
+          },
+          "style": "plain",
+          "template": "│ {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "red",
+          "style": "plain",
+          "template": "x{{ reason .Code }} ",
+          "type": "status"
+        },
+        {
+          "foreground": "lightMagenta",
+          "style": "plain",
+          "template": "\u276f ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        // {
+        //   "foreground": "darkGray",
+        //   "properties": {
+
+        //   },
+        //   "style": "plain",
+        //   "template": " {{ .HEAD }} ",
+        //   "type": "git"
+        // },
+        // {
+        //   "foreground": "#E5C07B",
+        //   "properties": {
+        //     "time_format": "15:04:05"
+        //   },
+        //   "style": "plain",
+        //   "template": "[{{ .CurrentDate | date .Format }}]",
+        //   "type": "time"
+        // }
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "darkGray",
+          "template": "{{ .FormattedMs }} ",
+          "properties": {
+            "threshold": 500,
+            "style": "austin",
+            "always_enabled": true
+          }
+        }
+      ],
+      "type": "rprompt"
+    }
+  ],
+  "version": 3
+}
