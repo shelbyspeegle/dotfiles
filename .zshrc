@@ -6,7 +6,7 @@
 # Clear a bunch of lines so prompt starts at bottom.
 # printf '\n%.0s' {1..100}
 # Load custom theme.
-eval "$(oh-my-posh init zsh --config ~/source/_personal/dotfiles/mytheme.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/source/dotfiles/mytheme.omp.json)"
 
 # Set up auto complete.
 # git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
