@@ -14,8 +14,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-
-
 # 🧑‍💻 FROM https://github.com/kentcdodds/dotfiles/blob/main/.zshrc ######################################################
 
 # history size
