@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Measure time until the next "enter" keypress.
+#
+# Usage:
+#   timer # then press "enter".
+#
+
+set -o errexit
+set -o nounset
+
+time read -p "Go! Press enter to call time: "

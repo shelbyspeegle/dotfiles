@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# Remove local branches that no longer have a remote branch
+# - Preserves local branches that haven't been pushed yet
+# - Removes branches that were merged to master/main and deleted from remote
+#
+# Usage:
+#   clanch
+
+echo "Fetching latest updates from remote..."
+git fetch --prune
+
+echo "Finding local branches without remote counterparts..."
+
+# Get a list of all local branches
+local_branches=$(git branch | grep -v "^\*" | sed 's/^[ \t]*//')
+
+# Counter for deleted branches
+deleted_count=0
+
+echo "Checking branches..."
+
+for branch in $local_branches; do
+	# Skip the main branch, master branch, and develop branch
+	if [[ $branch == "main" || $branch == "master" || $branch == "develop" ]]; then
+		echo "Skipping $branch branch"
+		continue
+	fi # Check if branch has upstream configuration
+	# upstream=$(git rev-parse --abbrev-ref $branch@{upstream} 2>/dev/null)
+
+	# Check if branch name looks like a merged feature branch (contains '/' characters)
+	if [[ ${branch} == *"/"*"/"* ]]; then
+		# This looks like a feature branch with pattern like username/ticket/description
+		echo "Checking merged feature branch: ${branch}"
+
+		# Check if remote branch exists
+		git branch -r | grep -q "origin/${branch}$"
+		if [[ $? -ne 0 ]]; then
+			# Remote doesn't exist, likely merged and deleted
+			echo "Deleting ${branch} (looks like merged feature branch, remote doesn't exist)"
+			git branch -D "${branch}"
+			deleted_count=$((deleted_count + 1))
+			continue
+		fi
+	fi
+
+	if [[ $? -ne 0 ]]; then
+		# No upstream means it's a local-only branch that hasn't been pushed
+		# Only keep it if it doesn't look like a merged branch pattern
+		echo "Keeping ${branch} (local branch, not pushed yet)"
+	else
+		# Check if the remote branch still exists by using git branch -r
+		git branch -r | grep -q "origin/$branch$"
+
+		if [[ $? -ne 0 ]]; then
+			# Remote branch doesn't exist anymore, delete local branch
+			echo "Deleting ${branch} (remote branch no longer exists)"
+			git branch -D "${branch}"
+			deleted_count=$((deleted_count + 1))
+		else
+			echo "Keeping ${branch} (remote branch still exists)"
+		fi
+	fi
+done
+
+echo "---------------------"
+echo "Cleanup complete! Deleted ${deleted_count} branches."

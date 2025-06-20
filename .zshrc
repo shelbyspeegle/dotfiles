@@ -1,20 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ########################################################################################################################
 # Prompt - "oh my posh"
 ########################################################################################################################
-# Clear a bunch of lines so prompt starts at bottom.
-# printf '\n%.0s' {1..100}
 # Load custom theme.
 eval "$(oh-my-posh init zsh --config ~/source/dotfiles/mytheme.omp.json)"
 
 # Set up auto complete.
-# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
 
 # Set up syntax highlighting.
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
@@ -48,7 +44,7 @@ source ~/.zshrc.private
 # OTHER STUFF ##########################################################
 
 # Aliases
-alias s="cd ~/source"
+alias sc="cd ~/source"
 alias ls='ls -G'
 alias zs='source ~/.zshrc'
 alias zc='code ~/.zshrc'

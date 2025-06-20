@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Expose standard logging functions.
+#
+# Usage:
+#   source .with-logging                   # after setup
+#   source "${REPO}/scripts/.with-logging" # before setup
+
+# Color codes.
+CLR_RST="\033[0m"    # Reset all color attributes.
+CLR_BLU="\033[0;34m" # Blue color for information.
+CLR_GRN="\033[0;32m" # Green color for success messages.
+CLR_YLW="\033[0;33m" # Yellow color for warnings.
+CLR_RED="\033[0;31m" # Red color for errors.
+CLR_CYN="\033[0;36m" # Cyan color for steps/actions.
+
+# Logging functions - Use these in your scripts to log messages with colors.
+echo_info()    { echo -e "${CLR_BLU}ℹ $1${CLR_RST}"; }
+echo_success() { echo -e "${CLR_GRN}✔ $1${CLR_RST}"; }
+echo_warn()    { echo -e "${CLR_YLW}⚠︎ $1${CLR_RST}"; }
+echo_error()   { echo -e "${CLR_RED}✖ $1${CLR_RST}"; }
+echo_step()    { echo -e "${CLR_CYN}➜ $1${CLR_RST}"; }
