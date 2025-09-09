@@ -74,8 +74,5 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# sst
-export PATH=/Users/sspeegle/.sst/bin:$PATH
-
 # This will allow you to execute your scripts in ~/scripts/ by simply typing scriptname in the bash.
 export PATH=$PATH:~/scripts

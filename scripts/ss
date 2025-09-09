@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+REPO="${HOME}/source/dotfiles"
+
+# shellcheck disable=SC1091
+source "${REPO}/scripts/.with-logging"
+
+# Inputs
+########################################################################################################################
+
+# Check for updates from repo
+
+echo_step "[ss] checking for updates..."
+if [[ ! -d "${REPO}" ]]; then
+  echo_error "Repository not found (${REPO}). Exiting..."
+  exit 1;
+fi
+cd "${REPO}" || exit 1
+git fetch origin main >> /dev/null 2>&1
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse @{u})
+BASE=$(git merge-base @ @{u})
+if [ $LOCAL = $REMOTE ]; then
+  echo_success "[ss] up to date"
+elif [ $LOCAL = $BASE ]; then
+  echo_step "[ss] updates found. Pulling changes..."
+  git pull
+  echo_success "[ss] repository updated."
+else
+  echo_error "[ss] local and remote repositories have diverged. Please resolve manually."
+fi
+echo
+
+# Check for uncommitted changes
+if ! git diff --quiet || ! git diff --cached --quiet || [[ -n $(git ls-files --others --exclude-standard) ]]; then
+  echo_step "[ss] there are uncommitted changes (modified, staged, or untracked files)."
+  read -p "[ss] do you want to stage, commit, and push them? (y/n): " answer
+  if [[ $answer =~ ^[Yy]$ ]]; then
+    git add .
+    echo "[ss] enter commit message (or press enter for default):"
+    read commit_msg
+    if [[ -z "$commit_msg" ]]; then
+      commit_msg="Update from ss script"
+    fi
+    git commit -m "$commit_msg"
+    git push origin main
+    echo_success "[ss] changes committed and pushed."
+  else
+    echo "[ss] changes not committed."
+  fi
+fi
+
+

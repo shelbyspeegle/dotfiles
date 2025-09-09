@@ -96,7 +96,7 @@ if [ ! -d "${HOME}/.zsh/zsh-syntax-highlighting" ]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.zsh/zsh-syntax-highlighting"
 fi
 zsh "${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-echo_success "Autocomplete setup complete."
+echo_success "Syntax highlighting complete."
 echo
 
 echo_success "Dotfiles setup complete!"

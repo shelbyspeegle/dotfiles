@@ -1,5 +1,7 @@
 # Setup
-`./setup.sh`
+
+`source ./scripts/setup`
 
 # Hot-reload for development
-`hotr ./setup.sh`
+
+`hotr ./scripts/setup`
