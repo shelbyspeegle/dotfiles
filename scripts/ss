@@ -36,16 +36,11 @@ echo
 
 # Check for uncommitted changes
 if ! git diff --quiet || ! git diff --cached --quiet || [[ -n $(git ls-files --others --exclude-standard) ]]; then
-  echo_step "[ss] Local changes detected. Hit enter to sync."
-  read -p "→ " answer
-  if [[ -z $answer ]]; then
-    git add .
-    git commit -m "ss update" >> /dev/null 2>&1
-    git push origin main >> /dev/null 2>&1
-    echo_success "[ss] Changes synced"
-  else
-    echo_warn "[ss] Changes not committed."
-  fi
+  echo_step "[ss] Local changes detected. Syncing..."
+  git add .
+  git commit -m "ss update" >> /dev/null 2>&1
+  git push origin main >> /dev/null 2>&1
+  echo_success "[ss] Changes synced"
 fi
 
 
