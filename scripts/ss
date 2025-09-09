@@ -10,9 +10,9 @@ source "${REPO}/scripts/.with-logging"
 
 # Check for updates from repo
 
-echo_step "[ss] checking for updates..."
+echo_step "[ss] Checking for updates..."
 if [[ ! -d "${REPO}" ]]; then
-  echo_error "Repository not found (${REPO}). Exiting..."
+  echo_error "[ss] Repository not found (${REPO}). Exiting..."
   exit 1;
 fi
 cd "${REPO}" || exit 1
@@ -21,32 +21,30 @@ LOCAL=$(git rev-parse @)
 REMOTE=$(git rev-parse @{u})
 BASE=$(git merge-base @ @{u})
 if [ $LOCAL = $REMOTE ]; then
-  echo_success "[ss] up to date"
+  echo_success "[ss] Repository is up to date."
 elif [ $LOCAL = $BASE ]; then
-  echo_step "[ss] updates found. Pulling changes..."
+  echo_step "[ss] Updates found. Pulling changes..."
   git pull
-  echo_success "[ss] repository updated."
+  echo_success "[ss] Repository updated."
+elif [ $REMOTE = $BASE ]; then
+  git push origin main >> /dev/null 2>&1
+  echo_success "[ss] Changes pushed."
 else
-  echo_error "[ss] local and remote repositories have diverged. Please resolve manually."
+  echo_error "[ss] Local and remote repositories have diverged. Please resolve manually."
 fi
 echo
 
 # Check for uncommitted changes
 if ! git diff --quiet || ! git diff --cached --quiet || [[ -n $(git ls-files --others --exclude-standard) ]]; then
-  echo_step "[ss] there are uncommitted changes (modified, staged, or untracked files)."
-  read -p "[ss] do you want to stage, commit, and push them? (y/n): " answer
-  if [[ $answer =~ ^[Yy]$ ]]; then
+  echo_step "[ss] Local changes detected. Hit enter to sync."
+  read -p "→ " answer
+  if [[ -z $answer ]]; then
     git add .
-    echo "[ss] enter commit message (or press enter for default):"
-    read commit_msg
-    if [[ -z "$commit_msg" ]]; then
-      commit_msg="Update from ss script"
-    fi
-    git commit -m "$commit_msg"
-    git push origin main
-    echo_success "[ss] changes committed and pushed."
+    git commit -m "ss update" >> /dev/null 2>&1
+    git push origin main >> /dev/null 2>&1
+    echo_success "[ss] Changes synced"
   else
-    echo "[ss] changes not committed."
+    echo_warn "[ss] Changes not committed."
   fi
 fi
 
