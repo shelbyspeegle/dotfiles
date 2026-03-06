@@ -76,3 +76,4 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # This will allow you to execute your scripts in ~/scripts/ by simply typing scriptname in the bash.
 export PATH=$PATH:~/scripts
+export PATH="$HOME/.local/bin:$PATH"
