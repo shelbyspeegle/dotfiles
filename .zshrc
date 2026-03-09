@@ -1,3 +1,10 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("/Users/sspeegle/.oh-my-zsh/custom/completions" $fpath)
+autoload -Uz compinit
+compinit
+# OPENSPEC:END
+
 #!/usr/bin/env bash
 
 ########################################################################################################################
@@ -43,10 +50,13 @@ source ~/.zshrc.private
 
 # Aliases
 alias sc="cd ~/source"
-alias ls='ls -G'
 alias zs='source ~/.zshrc'
 alias zc='code ~/.zshrc'
 alias up="echo 'Pinging Google' && ping www.google.com";
+
+# alias ls='ls -G'
+alias ls='eza --iconsw --grid --group-directories-first'
+
 
 alias uncommit='git reset HEAD~1 --soft'
 wifi() {
@@ -77,3 +87,5 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # This will allow you to execute your scripts in ~/scripts/ by simply typing scriptname in the bash.
 export PATH=$PATH:~/scripts
 export PATH="$HOME/.local/bin:$PATH"
+
+
