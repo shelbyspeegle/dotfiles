@@ -55,10 +55,12 @@ alias zc='code ~/.zshrc'
 alias up="echo 'Pinging Google' && ping www.google.com";
 
 # alias ls='ls -G'
-alias ls='eza --iconsw --grid --group-directories-first'
-
+alias ls='eza --icons --grid --group-directories-first'
+alias cl='claude'
 
 alias uncommit='git reset HEAD~1 --soft'
+alias gtag='git fetch --tags --force'
+
 wifi() {
   local interface="en0"
   echo "Disabling Wi-Fi..."
@@ -88,4 +90,5 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export PATH=$PATH:~/scripts
 export PATH="$HOME/.local/bin:$PATH"
 
-
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
