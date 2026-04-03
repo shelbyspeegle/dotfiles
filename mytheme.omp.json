@@ -136,15 +136,6 @@
         //   "template": " {{ .HEAD }} ",
         //   "type": "git"
         // },
-        // {
-        //   "foreground": "#E5C07B",
-        //   "properties": {
-        //     "time_format": "15:04:05"
-        //   },
-        //   "style": "plain",
-        //   "template": "[{{ .CurrentDate | date .Format }}]",
-        //   "type": "time"
-        // }
         {
           "type": "executiontime",
           "style": "plain",
@@ -152,9 +143,17 @@
           "template": "{{ .FormattedMs }} ",
           "properties": {
             "threshold": 500,
-            "style": "austin",
-            "always_enabled": true
+            "style": "austin"
           }
+        },
+        {
+          "foreground": "darkGray",
+          "properties": {
+            "time_format": "15:04:05"
+          },
+          "style": "plain",
+          "template": " [{{ .CurrentDate | date .Format }}]",
+          "type": "time"
         }
       ],
       "type": "rprompt"
