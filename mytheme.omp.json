@@ -17,18 +17,6 @@
           "type": "text"
         },
         {
-          "foreground": "#D42A6D",
-          "style": "plain",
-          "template": "────",
-          "type": "text"
-        },
-        {
-          "foreground": "#C62766",
-          "style": "plain",
-          "template": "────",
-          "type": "text"
-        },
-        {
           "foreground": "#B8245E",
           "style": "plain",
           "template": "────",
@@ -73,37 +61,37 @@
         {
           "foreground": "#55112C",
           "style": "plain",
-          "template": "────",
+          "template": "───",
           "type": "text"
         },
         {
           "foreground": "#470E24",
           "style": "plain",
-          "template": "────",
+          "template": "───",
           "type": "text"
         },
         {
           "foreground": "#390B1D",
           "style": "plain",
-          "template": "────",
+          "template": "───",
           "type": "text"
         },
         {
           "foreground": "#2A0816",
           "style": "plain",
-          "template": "────",
+          "template": "───",
           "type": "text"
         },
         {
           "foreground": "#1C060F",
           "style": "plain",
-          "template": "────",
+          "template": "───",
           "type": "text"
         },
         {
           "foreground": "#0E0307",
           "style": "plain",
-          "template": "────",
+          "template": "───",
           "type": "text"
         },
         {
