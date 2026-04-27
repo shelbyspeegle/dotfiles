@@ -49,7 +49,7 @@ source ~/.zshrc.private
 # OTHER STUFF ##########################################################
 
 # Aliases
-alias sc="cd ~/source"
+alias src="cd ~/source"
 alias zs='source ~/.zshrc'
 alias zc='code ~/.zshrc'
 alias up="echo 'Pinging Google' && ping www.google.com";
