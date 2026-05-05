@@ -56,6 +56,7 @@ alias up="echo 'Pinging Google' && ping www.google.com";
 
 # alias ls='ls -G'
 alias ls='eza --icons --grid --group-directories-first'
+alias cs='code ~/.claude/settings.json'
 alias cl='claude'
 
 alias uncommit='git reset HEAD~1 --soft'
