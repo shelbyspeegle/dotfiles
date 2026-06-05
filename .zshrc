@@ -13,6 +13,25 @@ compinit
 # Load custom theme.
 eval "$(oh-my-posh init zsh --config ~/source/dotfiles/mytheme.omp.json)"
 
+# Export terminal width so oh-my-posh can draw a full-width top line (.Env.COLUMNS).
+# zsh keeps COLUMNS current and updates it on resize.
+export COLUMNS
+
+# Make the right prompt sit flush against the right edge (default indent is 1),
+# so the right-side │ aligns under the top bar's ╮ corner.
+ZLE_RPROMPT_INDENT=0
+
+# Re-render the prompt on terminal resize. oh-my-posh bakes the full-width top
+# line into a static $PS1 at precmd time, so a plain `reset-prompt` would just
+# redraw the old width. Rebuild PS1/RPROMPT at the new $COLUMNS, then redraw.
+TRAPWINCH() {
+  zle || return   # only when sitting at an interactive prompt
+  if (( $+functions[_omp_get_prompt] )); then
+    eval "$(_omp_get_prompt primary --eval)"
+  fi
+  zle reset-prompt
+}
+
 # Set up auto complete.
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
