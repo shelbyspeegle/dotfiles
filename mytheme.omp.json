@@ -3,91 +3,8 @@
   "blocks": [
     {
       "alignment": "left",
+      "newline": false,
       "segments": [
-        {
-          "foreground": "#B1235B",
-          "style": "plain",
-          "template": "╰──",
-          "type": "text"
-        },
-        {
-          "foreground": "#B8245E",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#AA2257",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#9B1F50",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#8D1C49",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#7F1941",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#71163A",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#631433",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#55112C",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#470E24",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#390B1D",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#2A0816",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#1C060F",
-          "style": "plain",
-          "template": "──",
-          "type": "text"
-        },
-        {
-          "foreground": "#0E0307",
-          "style": "plain",
-          "template": "──\n\n",
-          "type": "text"
-        },
         {
           "foreground": "#B1235B",
           "properties": {
@@ -97,9 +14,30 @@
             }
           },
           "style": "plain",
-          "template": "{{ $c := atoi (coalesce .Env.COLUMNS \"80\") }}{{ if eq .Path \"SRC\" }}{{ $f := sub $c 14 }}{{ if lt $f 0 }}{{ $f = 0 }}{{ end }}╭─── <#888888>󰘬</> <lightMagenta>source</> {{ repeat (int $f) \"─\" }}{{ else if hasPrefix \"SRC/\" .Path }}{{ $n := trimPrefix \"SRC/\" .Path }}{{ $f := sub (sub $c 8) (len $n) }}{{ if lt $f 0 }}{{ $f = 0 }}{{ end }}╭─── <#888888>󰘬</> <lightMagenta>{{ $n }}</> {{ repeat (int $f) \"─\" }}{{ else }}{{ $f := sub (sub $c 5) (len .Path) }}{{ if lt $f 0 }}{{ $f = 0 }}{{ end }}╭─── <lightMagenta>{{ .Path }}</> {{ repeat (int $f) \"─\" }}{{ end }}\n│ ",
+          "template": "\n\n{{ if eq .Path \"SRC\" }}━━━ <#888888>󰘬</> <lightMagenta>source</> {{ else if hasPrefix \"SRC/\" .Path }}━━━ <#888888>󰘬</> <lightMagenta>{{ trimPrefix \"SRC/\" .Path }}</> {{ else }}━━━ <lightMagenta>{{ .Path }}</> {{ end }}",
           "type": "path"
-        },
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "newline": false,
+      "filler": "<#B1235B>━</>",
+      "segments": [
+        {
+          "foreground": "#B1235B",
+          "style": "plain",
+          "template": "━",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
         {
           "foreground": "red",
           "style": "plain",
@@ -109,7 +47,7 @@
         {
           "foreground": "lightMagenta",
           "style": "plain",
-          "template": "\u276f ",
+          "template": "❯ ",
           "type": "text"
         }
       ],
