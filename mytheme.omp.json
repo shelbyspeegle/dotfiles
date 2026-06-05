@@ -85,23 +85,11 @@
         {
           "foreground": "#0E0307",
           "style": "plain",
-          "template": "──\n",
+          "template": "──\n\n",
           "type": "text"
         },
         {
           "foreground": "#B1235B",
-          "style": "plain",
-          "template": "╭{{ $c := atoi (coalesce .Env.COLUMNS \"80\") }}{{ repeat (int (sub $c 2)) \"─\" }}╮",
-          "type": "text"
-        },
-        {
-          "foreground": "#B1235B",
-          "style": "plain",
-          "template": "\n│ ",
-          "type": "text"
-        },
-        {
-          "foreground": "lightMagenta",
           "properties": {
             "style": "agnoster_full",
             "mapped_locations": {
@@ -109,7 +97,7 @@
             }
           },
           "style": "plain",
-          "template": "{{ if eq .Path \"SRC\" }}<#888888>󰘬</> source {{ else if hasPrefix \"SRC/\" .Path }}<#888888>󰘬</> {{ trimPrefix \"SRC/\" .Path }} {{ else }}{{ .Path }} {{ end }}",
+          "template": "{{ $c := atoi (coalesce .Env.COLUMNS \"80\") }}{{ if eq .Path \"SRC\" }}{{ $f := sub $c 14 }}{{ if lt $f 0 }}{{ $f = 0 }}{{ end }}╭─── <#888888>󰘬</> <lightMagenta>source</> {{ repeat (int $f) \"─\" }}{{ else if hasPrefix \"SRC/\" .Path }}{{ $n := trimPrefix \"SRC/\" .Path }}{{ $f := sub (sub $c 8) (len $n) }}{{ if lt $f 0 }}{{ $f = 0 }}{{ end }}╭─── <#888888>󰘬</> <lightMagenta>{{ $n }}</> {{ repeat (int $f) \"─\" }}{{ else }}{{ $f := sub (sub $c 5) (len .Path) }}{{ if lt $f 0 }}{{ $f = 0 }}{{ end }}╭─── <lightMagenta>{{ .Path }}</> {{ repeat (int $f) \"─\" }}{{ end }}\n│ ",
           "type": "path"
         },
         {
@@ -160,12 +148,6 @@
           "style": "plain",
           "template": " [{{ .CurrentDate | date .Format }}]",
           "type": "time"
-        },
-        {
-          "foreground": "#B1235B",
-          "style": "plain",
-          "template": " │",
-          "type": "text"
         }
       ],
       "type": "rprompt"
