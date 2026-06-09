@@ -6,7 +6,7 @@
       "newline": false,
       "segments": [
         {
-          "foreground": "#B1235B",
+          "foreground": "#E7698E",
           "properties": {
             "style": "agnoster_full",
             "mapped_locations": {
@@ -14,7 +14,7 @@
             }
           },
           "style": "plain",
-          "template": "\n\n{{ if eq .Path \"SRC\" }}━━━ <#888888>󰘬</> <lightMagenta>source</> {{ else if hasPrefix \"SRC/\" .Path }}━━━ <#888888>󰘬</> <lightMagenta>{{ trimPrefix \"SRC/\" .Path }}</> {{ else }}━━━ <lightMagenta>{{ .Path }}</> {{ end }}",
+          "template": "\n\n{{ if eq .Path \"SRC\" }}━━━ <#888888>󰘬</> <#E7698E>source</> {{ else if hasPrefix \"SRC/\" .Path }}━━━ <#888888>󰘬</> <#E7698E>{{ trimPrefix \"SRC/\" .Path }}</> {{ else }}━━━ <#E7698E>{{ .Path }}</> {{ end }}",
           "type": "path"
         }
       ],
@@ -23,10 +23,10 @@
     {
       "alignment": "right",
       "newline": false,
-      "filler": "<#B1235B>━</>",
+      "filler": "<#E7698E>━</>",
       "segments": [
         {
-          "foreground": "#B1235B",
+          "foreground": "#E7698E",
           "style": "plain",
           "template": "━",
           "type": "text"

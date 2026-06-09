@@ -32,6 +32,13 @@ TRAPWINCH() {
   zle reset-prompt
 }
 
+# Start the prompt at the bottom of the window; normal scrolling keeps it there.
+# (Pushes any startup output up and leaves the cursor on the last row.)
+_prompt_to_bottom() { printf '\n%.0s' {1..$LINES}; }
+_prompt_to_bottom
+# `clear` resets the cursor to the top — re-anchor afterward.
+alias clear='clear && _prompt_to_bottom'
+
 # Set up auto complete.
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555555'
