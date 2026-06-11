@@ -119,5 +119,10 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export PATH=$PATH:~/scripts
 export PATH="$HOME/.local/bin:$PATH"
 
+# brew
+brew analytics off                     # disable Analytics reporting
+export HOMEBREW_NO_ANALYTICS=1         # disable Analytics reporting
+export HOMEBREW_NO_INSECURE_REDIRECT=1 # refuse http->https downgrade redirects
+
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
