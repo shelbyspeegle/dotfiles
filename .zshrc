@@ -123,6 +123,7 @@ export PATH="$HOME/.local/bin:$PATH"
 brew analytics off                     # disable Analytics reporting
 export HOMEBREW_NO_ANALYTICS=1         # disable Analytics reporting
 export HOMEBREW_NO_INSECURE_REDIRECT=1 # refuse http->https downgrade redirects
+export HOMEBREW_REQUIRE_TAP_TRUST=1    # require trust for taps (deny by default)
 
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
