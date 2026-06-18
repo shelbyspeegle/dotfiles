@@ -18,6 +18,7 @@ window-save-state = always
 macos-titlebar-style = tabs
 
 unfocused-split-opacity = 0.7
+unfocused-split-fill = #666666
 
 
 keybind = super+s=text:s\n
