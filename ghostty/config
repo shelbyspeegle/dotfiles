@@ -25,6 +25,10 @@ keybind = super+s=text:s\n
 keybind = super+k=text:clear\n
 keybind = opt+super+left=previous_tab
 keybind = opt+super+right=next_tab
+keybind = opt+shift+super+left=goto_split:left
+keybind = opt+shift+super+right=goto_split:right
+keybind = opt+shift+super+up=goto_split:up
+keybind = opt+shift+super+down=goto_split:down
 
 # theme = Bluloco light
 # theme = dark:Catppuccin Frappe,light:Catppuccin Latte

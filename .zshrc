@@ -75,6 +75,7 @@ source ~/.zshrc.private
 # OTHER STUFF ##########################################################
 
 # Aliases
+alias ad="cd ~/source/personal/andon"
 alias src="cd ~/source"
 alias zs='source ~/.zshrc'
 alias zc='code ~/.zshrc'
