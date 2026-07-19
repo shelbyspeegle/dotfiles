@@ -3,6 +3,10 @@
 # shellcheck disable=SC1091
 source "./scripts/.with-logging"
 
+# Quick check for inputs
+# DOTFILES_LOCATION="${HOME}/source/dotfiles"
+# ${DOTFILES_LOCATION:?"variable not set"}
+
 # Inputs
 ########################################################################################################################
 REPO="${HOME}/source/dotfiles"
@@ -85,6 +89,7 @@ fi
 echo
 
 # Connect Ghostty config.
+# ln -s "${DOTFILES_LOCATION}/ghostty/config" ~/Library/Application\ Support/com.mitchellh.ghostty/config.ghostty
 ########################################################################################################################
 echo_step "Linking Ghostty config (${HOME__GHOSTTY_DIR})"
 if [[ -L "${HOME__GHOSTTY_DIR}" && "$(readlink "${HOME__GHOSTTY_DIR}")" == "${REPO__GHOSTTY_DIR}" ]]; then
@@ -124,6 +129,8 @@ else
 fi
 echo
 
+source "./scripts/brew.sh"
+
 # Initialize shell
 ########################################################################################################################
 
@@ -146,3 +153,6 @@ echo_success "Syntax highlighting complete."
 echo
 
 echo_success "Dotfiles setup complete!"
+
+# Install claude
+# curl -fsSL https://claude.ai/install.sh | bash
