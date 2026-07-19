@@ -19,6 +19,9 @@ HOME__SCRIPTS_DIR="${HOME}/${SCRIPTS_DIRNAME}" # e.g., ~/scripts
 REPO__GHOSTTY_DIR="${REPO}/ghostty" # e.g., ~/source/dotfiles/ghostty
 HOME__GHOSTTY_DIR="${HOME}/.config/ghostty" # Ghostty config + themes
 
+REPO__CLAUDE_STATUSLINE="${REPO}/claude/statusline-command.sh" # e.g., ~/source/dotfiles/claude/statusline-command.sh
+HOME__CLAUDE_STATUSLINE="${HOME}/.claude/statusline-command.sh" # Claude Code status line script
+
 # Initialize
 echo
 echo "Initializing dotfiles..."
@@ -97,6 +100,26 @@ else
   fi
   mkdir -p "${HOME}/.config"
   ln -s "${REPO__GHOSTTY_DIR}" "${HOME__GHOSTTY_DIR}"
+  echo_success "Symlink created."
+fi
+echo
+
+# Connect Claude Code status line.
+########################################################################################################################
+echo_step "Linking Claude Code status line (${HOME__CLAUDE_STATUSLINE})"
+if [[ -L "${HOME__CLAUDE_STATUSLINE}" && "$(readlink "${HOME__CLAUDE_STATUSLINE}")" == "${REPO__CLAUDE_STATUSLINE}" ]]; then
+  echo_success "File is already correctly linked. Continuing..."
+else
+  if [[ -e "${HOME__CLAUDE_STATUSLINE}" ]]; then
+    echo_step "Existing ${HOME__CLAUDE_STATUSLINE} found. Backing it up to ${HOME__CLAUDE_STATUSLINE}.backup..."
+    if [[ -e "${HOME__CLAUDE_STATUSLINE}.backup" ]]; then
+      rm -f "${HOME__CLAUDE_STATUSLINE}.backup"
+    fi
+    mv "${HOME__CLAUDE_STATUSLINE}" "${HOME__CLAUDE_STATUSLINE}.backup"
+    echo_success "Backup created."
+  fi
+  mkdir -p "${HOME}/.claude"
+  ln -s "${REPO__CLAUDE_STATUSLINE}" "${HOME__CLAUDE_STATUSLINE}"
   echo_success "Symlink created."
 fi
 echo

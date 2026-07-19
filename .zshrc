@@ -32,12 +32,12 @@ TRAPWINCH() {
   zle reset-prompt
 }
 
-# Start the prompt at the bottom of the window; normal scrolling keeps it there.
-# (Pushes any startup output up and leaves the cursor on the last row.)
-_prompt_to_bottom() { printf '\n%.0s' {1..$LINES}; }
-_prompt_to_bottom
-# `clear` resets the cursor to the top — re-anchor afterward.
-alias clear='clear && _prompt_to_bottom'
+# Prompt starts at the top of the window (default). To re-anchor it to the
+# bottom, uncomment the block below.
+# _prompt_to_bottom() { printf '\n%.0s' {1..$LINES}; }
+# _prompt_to_bottom
+# # `clear` resets the cursor to the top — re-anchor afterward.
+# alias clear='clear && _prompt_to_bottom'
 
 # Set up auto complete.
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -85,6 +85,7 @@ alias up="echo 'Pinging Google' && ping www.google.com";
 # alias ls='ls -G'
 alias ls='eza --icons --grid --group-directories-first'
 alias cs='code ~/.claude/settings.json'
+alias cm='code ~/.claude/CLAUDE.md'
 alias cl='claude'
 alias wt='~/.claude/bin/wt-sweep'   # survey/prune Claude Code worktrees (wt -n = dry run)
 
@@ -128,3 +129,7 @@ export HOMEBREW_REQUIRE_TAP_TRUST=1    # require trust for taps (deny by default
 
 # Vite+ bin (https://viteplus.dev)
 . "$HOME/.vite-plus/env"
+
+# Force OSC-8 hyperlink output for the Claude Code statusline (Ghostty is not in
+# CC hyperlink auto-detect list, so links are suppressed without this).
+export FORCE_HYPERLINK=1

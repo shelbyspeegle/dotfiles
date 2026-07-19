@@ -4,7 +4,9 @@ font-thicken = 1
 cursor-style = block
 shell-integration-features = no-cursor
 
-split-divider-color = #E7698E
+# split-divider-color = #E7698E
+split-divider-color = #34393E
+
 
 macos-icon = custom
 macos-custom-icon = "/Users/sspeegle/source/dotfiles/ghostty/claude-icon-lightpink.png"
@@ -30,12 +32,15 @@ keybind = opt+shift+super+right=goto_split:right
 keybind = opt+shift+super+up=goto_split:up
 keybind = opt+shift+super+down=goto_split:down
 
+# Theming ##############################################################################################################
+# ghostty +list-themes
+
 # theme = Bluloco light
-# theme = dark:Catppuccin Frappe,light:Catppuccin Latte
+# theme = dark:_shelbyspeegle,light:Catppuccin Latte
+# theme = dark:_shelbyspeegle,light:GitHub Light Default
+theme = dark:_shelbyspeegle,light:iTerm2 Tango Light
 
-
-
-theme = _shelbyspeegle
+# theme = _shelbyspeegle
 # background = #000000
 # foreground = #dce3ea
 # palette = 0 = #34393e
